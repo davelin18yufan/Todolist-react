@@ -31,10 +31,11 @@ const StyledButton = styled.button`
   }
 `;
 
-const Footer = () => {
+const Footer = ({todos}) => {
+  let pendingItems = todos.filter(todo => todo.isDone === false)
   return (
     <StyledFooter>
-      <p>剩餘項目數： 0</p>
+      <p >剩餘未完成項目數： {pendingItems.length}</p>
       <StyledButton>登出</StyledButton>
     </StyledFooter>
   );
