@@ -1,3 +1,4 @@
+import { useAuth } from 'contexts/AuthContext';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
@@ -32,11 +33,18 @@ const StyledButton = styled.button`
 `;
 
 const Footer = ({todos}) => {
+  const { logout } = useAuth()
+
+  const handleClick = () => {
+    logout()
+  }
+
+
   let pendingItems = todos.filter(todo => todo.isDone === false)
   return (
     <StyledFooter>
       <p >剩餘未完成項目數： {pendingItems.length}</p>
-      <StyledButton>登出</StyledButton>
+      <StyledButton onClick={handleClick}>登出</StyledButton>
     </StyledFooter>
   );
 };
